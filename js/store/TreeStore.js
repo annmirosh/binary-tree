@@ -13,8 +13,12 @@ function generateRandomNumber() {
     return number;
 }
 
-function addNumberToTree() {
+function addNodeToTree() {
     tree.add(generateRandomNumber());
+}
+function removeNodeFromTree(value) {
+    console.log('removeNodeFromTree', value)
+    tree.remove(value);
 }
 
 var Store = _.extend({}, EventEmitter.prototype, {
@@ -41,8 +45,12 @@ AppDispatcher.register(function (payload) {
 
     switch (action.actionType) {
 
-        case AppConstants.ADD_NODE_TO_TREE:
-            addNumberToTree();
+        case AppConstants.ADD_NODE:
+            addNodeToTree();
+            break;
+
+        case AppConstants.REMOVE_NODE:
+            removeNodeFromTree(action.value);
             break;
 
         default:

@@ -2,14 +2,14 @@
 var
     React = require('react'),
     d3 = require('d3'),
-    Store = require('../store/Store'),
+    TreeStore = require('../store/TreeStore'),
     Node = require('../tree/Node'),
     NodeUI = require('../components/Node'),
     Link = require('../components/Link');
 
 function getTree() {
     return {
-        tree: Store.getTree()
+        tree: TreeStore.getTree()
     };
 }
 var Tree = React.createClass({
@@ -44,11 +44,11 @@ var Tree = React.createClass({
         );
     },
     componentDidMount: function () {
-        Store.addChangeListener(this._onChange);
+        TreeStore.addChangeListener(this._onChange);
     },
 
     componentWillUnmount: function () {
-        Store.removeChangeListener(this._onChange);
+        TreeStore.removeChangeListener(this._onChange);
     },
 
     _onChange: function () {

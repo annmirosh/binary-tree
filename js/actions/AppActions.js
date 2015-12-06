@@ -6,7 +6,13 @@ var AppDispatcher = require('../dispatcher/AppDispatcher'),
 var AppActions = {
     addNodeToTree: function () {
         AppDispatcher.handleAction({
-            actionType: AppConstants.ADD_NODE_TO_TREE
+            actionType: AppConstants.ADD_NODE
+        })
+    },
+    removeNodeFromTree: function (value) {
+        AppDispatcher.handleAction({
+            actionType: AppConstants.REMOVE_NODE,
+            value: value
         })
     }
 };
