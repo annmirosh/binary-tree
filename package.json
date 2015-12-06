@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "main": "main.js",
   "dependencies": {
+    "d3": "^3.5.10",
     "flux": "^2.0.0",
     "react": "^0.12.0",
     "underscore": "^1.7.0"
