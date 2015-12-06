@@ -8,7 +8,9 @@ var AppDispatcher = require('../dispatcher/AppDispatcher'),
     tree = new BinaryTree();
 
 function generateRandomNumber() {
-    return Math.floor(Math.random() * 100 * (Math.random() > 0.5 ? 1 : -1));
+    var number = Math.floor(Math.random() * 100 * (Math.random() > 0.5 ? 1 : -1));
+    console.log(number);
+    return number;
 }
 
 function addNumberToTree() {

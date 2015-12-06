@@ -7,11 +7,10 @@ var Node = React.createClass({
         var transform = 'translate(' + this.props.x + ',' + this.props.y + ')';
         return (
             <g className="node" transform={transform}>
-                <circle r="4.5"></circle>
-                <text x="-20" dy=".35em" text-anchor="end">{this.props.text}</text>
+                <circle k r="12"></circle>
+                <text x="-6" y="3">{this.props.text}</text>
             </g>
         );
     }
 });
-
 module.exports = Node;

@@ -24,18 +24,18 @@ var Tree = React.createClass({
             );
         }
         var transformMainG = 'translate(' + this.state.marginLeft + ',' + this.state.marginTop + ')';
-        var links = this.state.links.map(function (link) {
+        var links = this.state.links.map(function (link, index) {
             return (
-                <Link link={link}></Link>
+                <Link link={link} key={index}></Link>
             );
         }, this);
         var nodes = this.state.nodes.map(function (node) {
             return (
-                <NodeUI text={node.value} x={node.x} y={node.y}></NodeUI>
+                <NodeUI text={node.value} x={node.x} y={node.y} key={node.value}></NodeUI>
             );
         }, this);
         return (
-            <svg width={this.state.width} height={this.state.height}>
+            <svg>
                 <g transform={transformMainG}>
                     {links}
                     {nodes}
