@@ -1,16 +1,17 @@
 'use strict';
 
-function Node(value) {
-    this.value = value;
-    this.leftChild = null;
-    this.rightChild = null;
-}
+var Node = require('../tree/Node'),
+    EmptyNode = require('../tree/EmptyNode');
 
 function BinaryTree() {
     this.root = null;
 }
 
 BinaryTree.prototype = {
+    hasNodes: function () {
+        return this.root !== null;
+    },
+
     add: function (value) {
         var node = new Node(value),
             currentNode = null;
@@ -21,18 +22,18 @@ BinaryTree.prototype = {
             currentNode = this.root;
             while (true) {
                 if (value < currentNode.value) {
-                    if (currentNode.leftChild === null) {
-                        currentNode.leftChild = node;
+                    if (currentNode.children[0] instanceof EmptyNode) {
+                        currentNode.children[0] = node;
                         break;
                     } else {
-                        currentNode = currentNode.leftChild;
+                        currentNode = currentNode.children[0];
                     }
                 } else if (value > currentNode.value) {
-                    if (currentNode.rightChild === null) {
-                        currentNode.rightChild = node;
+                    if (currentNode.children[1] instanceof EmptyNode) {
+                        currentNode.children[1] = node;
                         break;
                     } else {
-                        currentNode = currentNode.rightChild;
+                        currentNode = currentNode.children[1];
                     }
                 } else {
                     break;

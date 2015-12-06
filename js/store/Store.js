@@ -5,14 +5,14 @@ var AppDispatcher = require('../dispatcher/AppDispatcher'),
     AppConstants = require('../constants/AppConstants'),
     BinaryTree = require('../tree/BinaryTree'),
     _ = require('underscore'),
-    randomNumber = 0, tree = new BinaryTree();
+    tree = new BinaryTree();
 
 function generateRandomNumber() {
-    randomNumber = Math.floor(Math.random() * 100 * (Math.random() > 0.5 ? 1 : -1));
+    return Math.floor(Math.random() * 100 * (Math.random() > 0.5 ? 1 : -1));
 }
 
 function addNumberToTree() {
-    tree.add(randomNumber);
+    tree.add(generateRandomNumber());
 }
 
 var Store = _.extend({}, EventEmitter.prototype, {
@@ -28,9 +28,8 @@ var Store = _.extend({}, EventEmitter.prototype, {
         this.removeListener('change', callback);
     },
 
-    getNumber: function () {
-        console.log(tree);
-        return randomNumber;
+    getTree: function () {
+        return tree;
     }
 
 });
@@ -40,8 +39,7 @@ AppDispatcher.register(function (payload) {
 
     switch (action.actionType) {
 
-        case AppConstants.GENERATE_RANDOM_NUMBER:
-            generateRandomNumber();
+        case AppConstants.ADD_NODE_TO_TREE:
             addNumberToTree();
             break;
 
