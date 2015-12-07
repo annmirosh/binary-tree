@@ -33,8 +33,7 @@ Node.prototype = {
     },
     setRight: function (node) {
         return this.children[1] = node;
-    },
-
+    }
 };
 
 module.exports = Node;
