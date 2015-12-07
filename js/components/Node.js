@@ -8,14 +8,13 @@ var Node = React.createClass({
         var transform = 'translate(' + this.props.x + ',' + this.props.y + ')';
         return (
             <g className="node" transform={transform} onClick={this.handleClick}>
-                <circle r="12"></circle>
+                <circle r="12"/>
                 <text x="-6" y="3">{this.props.text}</text>
             </g>
         );
     },
     handleClick: function () {
         AppActions.removeNodeFromTree(this.props.text);
-        console.log(this.props.text)
     }
 });
 module.exports = Node;

@@ -7,15 +7,21 @@ function Node(value) {
 }
 
 Node.prototype = {
+    constructor: Node,
+
+    isEmpty: function () {
+        return false;
+    },
     getChildrenCount: function () {
         var count = 0;
         this.children.forEach(function (child) {
-            if (child instanceof Node) {
+            if (!child.isEmpty()) {
                 count++;
             }
         });
 
         return count;
     }
-}
+};
+
 module.exports = Node;

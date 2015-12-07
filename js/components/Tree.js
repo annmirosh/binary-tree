@@ -3,8 +3,7 @@ var
     React = require('react'),
     d3 = require('d3'),
     TreeStore = require('../store/TreeStore'),
-    Node = require('../tree/Node'),
-    NodeUI = require('../components/Node'),
+    Node = require('../components/Node'),
     Link = require('../components/Link');
 
 function getTree() {
@@ -26,12 +25,12 @@ var Tree = React.createClass({
         var transformMainG = 'translate(' + this.state.marginLeft + ',' + this.state.marginTop + ')';
         var links = this.state.links.map(function (link, index) {
             return (
-                <Link link={link} key={index}></Link>
+                <Link link={link} key={index}/>
             );
         }, this);
         var nodes = this.state.nodes.map(function (node) {
             return (
-                <NodeUI text={node.value} x={node.x} y={node.y} key={node.value}></NodeUI>
+                <Node text={node.value} x={node.x} y={node.y} key={node.value}/>
             );
         }, this);
         return (
@@ -57,7 +56,7 @@ var Tree = React.createClass({
 
     },
     calculateTreeState: function () {
-        var margin = {top: 20, right: 120, bottom: 20, left: 120},
+        var margin = {top: 40, right: 120, bottom: 20, left: 120},
             width = 960 - margin.right - margin.left,
             height = 800 - margin.top - margin.bottom;
 
@@ -84,7 +83,7 @@ var Tree = React.createClass({
         this.nodes = this.tree.nodes(this.root);
         this.nodes = this.nodes
             .filter(function (node) {
-                return node instanceof Node;
+                return !node.isEmpty();
             });
         this.nodes.forEach(function (d) {
             d.y = d.depth * 100;
@@ -92,7 +91,7 @@ var Tree = React.createClass({
 
         this.links = this.tree.links(this.nodes)
             .filter(function (link) {
-                return link.target instanceof Node;
+                return !link.target.isEmpty();
             });
     }
 });
