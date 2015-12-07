@@ -9,9 +9,9 @@ function BinaryTree() {
 
 function minValue(root) {
     var min = root.value;
-    while (!root.children[0].isEmpty()) {
-        min = root.children[0].value;
-        root = root.children[0];
+    while (!root.getLeft().isEmpty()) {
+        min = root.getLeft().value;
+        root = root.getLeft();
     }
     return min;
 }
@@ -19,18 +19,18 @@ function minValue(root) {
 function remove(root, value) {
 
     if (value < root.value)
-        root.children[0] = remove(root.children[0], value);
+        root.setLeft(remove(root.getLeft(), value));
     else if (value > root.value)
-        root.children[1] = remove(root.children[1], value);
+        root.setRight(remove(root.getRight(), value));
 
     else {
-        if (root.children[0].isEmpty())
-            return root.children[1];
-        else if (root.children[1].isEmpty())
-            return root.children[0];
+        if (root.getLeft().isEmpty())
+            return root.getRight();
+        else if (root.getRight().isEmpty())
+            return root.getLeft();
 
-        root.value = minValue(root.children[1]);
-        root.children[1] = remove(root.children[1], root.value);
+        root.value = minValue(root.getRight());
+        root.setRight(remove(root.getRight(), root.value));
     }
 
     return root;
@@ -53,18 +53,18 @@ BinaryTree.prototype = {
             currentNode = this.root;
             while (true) {
                 if (value < currentNode.value) {
-                    if (currentNode.children[0].isEmpty()) {
-                        currentNode.children[0] = node;
+                    if (currentNode.getLeft().isEmpty()) {
+                        currentNode.setLeft(node);
                         break;
                     } else {
-                        currentNode = currentNode.children[0];
+                        currentNode = currentNode.getLeft();
                     }
                 } else if (value > currentNode.value) {
-                    if (currentNode.children[1].isEmpty()) {
-                        currentNode.children[1] = node;
+                    if (currentNode.getRight().isEmpty()) {
+                        currentNode.setRight(node);
                         break;
                     } else {
-                        currentNode = currentNode.children[1];
+                        currentNode = currentNode.getRight();
                     }
                 } else {
                     break;

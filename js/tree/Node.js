@@ -21,7 +21,20 @@ Node.prototype = {
         });
 
         return count;
-    }
+    },
+    getLeft: function () {
+        return this.children[0];
+    },
+    setLeft: function (node) {
+        return this.children[0] = node;
+    },
+    getRight: function () {
+        return this.children[1];
+    },
+    setRight: function (node) {
+        return this.children[1] = node;
+    },
+
 };
 
 module.exports = Node;
