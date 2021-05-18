@@ -6,7 +6,7 @@ How to run it:
 
  1) "npm install"
  
- 2) "gulp default"
+ 2) "npm run start"
  
  3) Open index.html in the browser
 
